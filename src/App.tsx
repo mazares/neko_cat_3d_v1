@@ -23,15 +23,36 @@ function App() {
       adjustCamera={true}
       preset="rembrandt"
     >
-      <NekoCat
-        scale={0.5}
-        position={[0, 0, 0]}
-        rotation={[0, Math.PI / 2, 0]}
-        material={material}
-      />
+      <NekoCat position={[0, 0, 0]} rotation={[0, 0, 0]} />
 
       <ambientLight intensity={1} />
       <pointLight position={[0, 7, 1]} intensity={400} />
+
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={new THREE.BoxGeometry(1, 1, 1)}
+        material={material}
+        position={[0, 1, 0]}
+        rotation={[0, 0, 0]}
+        scale={[2, 1, 2]}
+      >
+        <cylinderGeometry args={[1, 1, 1, 32]} />
+        <meshStandardMaterial
+          color="green"
+          opacity={0.1}
+          transparent={true}
+          emissive="black"
+          emissiveIntensity={5}
+          metalness={0.5}
+          roughness={0.5}
+          side={THREE.DoubleSide}
+          depthWrite={false}
+          depthTest={false}
+          polygonOffset={true}
+          polygonOffsetFactor={-1}
+        />
+      </mesh>
     </Stage>
   );
 }
